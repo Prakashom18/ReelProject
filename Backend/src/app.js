@@ -10,6 +10,7 @@ app.get('/',(req,res)=>{
     res.send('Homepage');
 })
 
+
 app.use('/reg',authController);
 
 

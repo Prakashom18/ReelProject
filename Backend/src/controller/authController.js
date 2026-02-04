@@ -1,8 +1,10 @@
 const userModel = require('../models/userModel');
-const express = require('express');
-const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const express = require('express');
+const router = express.Router();
+
+
 
 
 // router.get('/',(req,res)=>{
@@ -24,9 +26,22 @@ async function registerUser(req,res){
         password : hashedpass,
         email 
     })
-    const token = jwt.sign()
+    const token = jwt.sign({
+        id : user._id,
+        
+    },'secretkey123');
+    res.cookie('token',token);
+    res.status(201).json({
+        message: "USer registered successfull",
+        user:{
+            _id : user._id,
+            email : user.email,
+            fullname : user.fullName
+        }
+    })
 }
 
 
 
 module.exports = router;
+ 
