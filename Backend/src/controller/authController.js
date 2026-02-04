@@ -41,6 +41,22 @@ async function registerUser(req,res){
     })
 }
 
+async function loginUser(req,res){
+    const {email,password} = req.body;
+    const user = findOne({email});
+    if(!user){
+        return res.status(400).json({
+            message:"something went wrong"
+        }
+        )
+    }
+    const isPassword = bcrypt.compare(password,user.password);
+    if(isPassword){
+    
+        res.cookie('token',token);
+
+    }
+}
 
 
 module.exports = router;
