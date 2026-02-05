@@ -20,7 +20,7 @@ async function registerUser(req, res) {
 
     const token = jwt.sign(
         { id: user._id },
-        'secretkey123'
+          process.env.JWT_SECRET
     );
 
     res.cookie('token', token);
@@ -50,14 +50,24 @@ async function loginUser(req, res) {
 
     const token = jwt.sign(
         { id: user._id },
-        'secretkey123'
+        process.env.JWT_SECRET
     );
 
     res.cookie('token', token);
     res.json({ message: 'Login successful' });
 }
 
+async function logoutUser(req,res){
+
+    res.cookie('token',"");
+    res.status(200).json({
+        message : "user logged out success"
+    })
+    
+}
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    logoutUser
 };
