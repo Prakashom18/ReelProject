@@ -13,7 +13,7 @@ app.get('/',(req,res)=>{
 app.use('/api/auth',authRoutes);
 
 
-app.use('/reg',authController);
+// app.use('/reg',authController);
 
 
 module.exports = app;
