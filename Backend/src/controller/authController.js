@@ -66,6 +66,17 @@ async function logoutUser(req,res){
     
 }
 
+async function registerFoodpartner(req,res){
+    const {email,password,name} = req.body;
+    const isRegistered = userModel.findOne({email})
+    if(isRegistered){
+        return res.status(400).json({
+            message : "Already registered food partner"
+        })
+    }
+
+}
+
 module.exports = {
     registerUser,
     loginUser,
