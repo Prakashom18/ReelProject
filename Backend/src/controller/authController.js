@@ -97,9 +97,36 @@ async function registerFoodpartner(req,res){
 
 }
 
+async function loginFoodpartner(req,res){
+    const {email,password} = req.body;
+    const foodpartner = await foodpartnerModel.findOne({email});
+    if(!foodpartner){
+     return   res.status(400).json({
+        message : 'something went wrong'
+     })
+    }
+    const result = await bcrypt.compare(password,foodpartner.password);
+    if(!result){
+        return res.status(201).json({
+            message : ('login unsuccessful please try again')
+        })
+    }
+    const token = jwt.sign({
+        id : isEmailvalid._id
+
+    },process.env.JWT_SECRET)
+    res.cookie('token',token);
+    res.json({
+        message : 'Login Successful'
+    })
+}
+
+
 module.exports = {
     registerUser,
     loginUser,
     logoutUser,
-    registerFoodpartner
+    registerFoodpartner,
+    loginFoodpartner
+
 };
