@@ -8,7 +8,6 @@ async function createFood(req,res){
     console.log(req.file);
     res.send('Food item created');
 
-
 }
 
 
