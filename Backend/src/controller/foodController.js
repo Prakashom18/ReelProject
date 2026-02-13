@@ -14,9 +14,9 @@ async function createFood(req,res){
 }
 
 async function showFood(req,res){
-    
+    console.log(req.file);
 }
 
 module.exports = {
-    createFood
+    createFood,showFood
 };
