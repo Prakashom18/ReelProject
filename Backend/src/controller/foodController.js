@@ -13,6 +13,9 @@ async function createFood(req,res){
     console.log(fileUploadResult)
 }
 
+async function showFood(req,res){
+    
+}
 
 module.exports = {
     createFood
